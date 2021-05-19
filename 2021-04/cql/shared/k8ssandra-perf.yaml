@@ -1,0 +1,52 @@
+cassandra:
+  enabled: true
+  version: "4.0.0"
+  cassandraLibDirVolume:
+    storageClass: PLACEHOLDER
+    size: 2Ti
+  datacenters:
+  - name: dc1
+    size: 3
+    racks:
+      - name: r1
+        affinityLabels:
+          topology.kubernetes.io/zone: PLACEHOLDER
+      - name: r2
+        affinityLabels:
+          topology.kubernetes.io/zone: PLACEHOLDER
+      - name: r3
+        affinityLabels:
+          topology.kubernetes.io/zone: PLACEHOLDER
+  heap:
+    size: 31G
+  gc:
+    g1:
+      enabled: true
+      setUpdatingPauseTimePercent: 5
+      maxGcPauseMillis: 300
+      initiatingHeapOccupancyPercent: 70
+  resources:
+    requests:
+      memory: 55Gi
+      cpu: 7100m
+    limits:
+      memory: 61Gi
+      cpu: 7500m
+  ingress:
+    enabled: false
+
+stargate:
+  enabled: false
+
+reaper:
+  enabled: false
+
+medusa:
+  enabled: false
+
+reaper-operator:
+  enabled: false
+
+kube-prometheus-stack:
+  enabled: false
+
