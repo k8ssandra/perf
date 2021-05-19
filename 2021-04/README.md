@@ -9,8 +9,9 @@ The following benchmarks will be carried over:
 the hardware on which the pods get scheduled. We’ll benchmark raw CPU performance using `sysbench`
 and I/O performance using `fio`.
    
-2. CQL benchmarks. The benchmarks will be conducted with `nosqlbench` using the `cql-iot` profile,
-comparing the results of each cloud vendor against a baseline reference using AWS EC2 instances.
+2. CQL benchmarks. The benchmarks will be conducted with `nosqlbench` using the `cql-tabular2`
+profile, comparing the results of each cloud vendor against a baseline reference using AWS EC2
+instances.
 
 # Hardware benchmarks
 

@@ -1,0 +1,60 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: nosqlbench-io-latency
+  namespace: k8ssandra
+spec:
+  template:
+    spec:
+      containers:
+        - command:
+          - java
+          - -jar
+          - nb.jar
+          - cql-tabular2
+          - username=$(K8S_USER)
+          - password=$(K8S_PWD)
+          - rampup-cycles=1M
+          - main-cycles=50M
+          - write_ratio=5
+          - read_ratio=5
+          - threads=150
+          - striderate=10
+          - stride=800
+          - hosts=k8ssandra-dc1-service
+          - --progress
+          - console:1s
+          - --report-csv-to
+          - /var/lib/stress/io_latency
+          - rf=3
+          - partsize=5000
+          - -v
+          image: nosqlbench/nosqlbench
+          name: nosqlbench-io-latency
+          resources:
+            requests:
+              cpu: 7500m
+              memory: 8Gi
+          volumeMounts:
+            - name: stress-results
+              mountPath: /var/lib/stress
+          env:
+            - name: K8S_USER
+              valueFrom:
+                secretKeyRef:
+                  name: k8ssandra-superuser
+                  key: username
+            - name: K8S_PWD
+              valueFrom:
+                secretKeyRef:
+                  name: k8ssandra-superuser
+                  key: password
+      volumes:
+        - name: stress-results
+          hostPath:
+            path: /tmp
+            type: DirectoryOrCreate
+      restartPolicy: Never
+      nodeSelector:
+        k8ssandra-test-pool: stress
+  backoffLimit: 1
