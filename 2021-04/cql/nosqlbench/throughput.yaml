@@ -1,17 +1,13 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: nosqlbench-io-throughput
+  name: nosqlbench-throughput
   namespace: k8ssandra
 spec:
   template:
     spec:
       containers:
         - command:
-            - rm
-            - -rf
-            - /var/lib/stress/io_*
-            - "&&"
             - java
             - -jar
             - nb.jar
@@ -27,12 +23,12 @@ spec:
             - --progress
             - console:1s
             - --report-csv-to
-            - /var/lib/stress/io_throughput
+            - /var/lib/stress/throughput
             - rf=3
             - partsize=5000
             - -v
           image: nosqlbench/nosqlbench
-          name: nosqlbench-io-throughput
+          name: nosqlbench-throughput
           resources:
             requests:
               cpu: 7500m

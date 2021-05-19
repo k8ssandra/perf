@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: nosqlbench-io-latency
+  name: nosqlbench-latency
   namespace: k8ssandra
 spec:
   template:
@@ -25,12 +25,12 @@ spec:
           - --progress
           - console:1s
           - --report-csv-to
-          - /var/lib/stress/io_latency
+          - /var/lib/stress/latency
           - rf=3
           - partsize=5000
           - -v
           image: nosqlbench/nosqlbench
-          name: nosqlbench-io-latency
+          name: nosqlbench-latency
           resources:
             requests:
               cpu: 7500m
