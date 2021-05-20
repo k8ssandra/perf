@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: hardware-bench-standard
+  name: hardware-bench-standard
+spec:
+  containers:
+    - args:
+        - sleep
+        - "36000"
+      image: ubuntu:focal
+      name: hardware-bench-standard
+      resources:
+        requests:
+          memory: 61Gi
+          cpu: 7500m
+      volumeMounts:
+        - mountPath: "/var/lib/cassandra/fio"
+          name: mypd
+  volumes:
+    - name: mypd
+      persistentVolumeClaim:
+        claimName: fio-bench-claim-standard
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always

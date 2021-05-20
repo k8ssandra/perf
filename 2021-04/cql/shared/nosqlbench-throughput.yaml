@@ -12,8 +12,8 @@ spec:
             - -jar
             - nb.jar
             - cql-tabular2
-            - username=$(K8S_USER)
-            - password=$(K8S_PWD)
+            - username=$(K8SSANDRA_USER)
+            - password=$(K8SSANDRA_PWD)
             - rampup-cycles=1M
             - main-cycles=100M
             - write_ratio=5
@@ -39,12 +39,12 @@ spec:
             - name: stress-results
               mountPath: /var/lib/stress
           env:
-            - name: K8S_USER
+            - name: K8SSANDRA_USER
               valueFrom:
                 secretKeyRef:
                   name: k8ssandra-superuser
                   key: username
-            - name: K8S_PWD
+            - name: K8SSANDRA_PWD
               valueFrom:
                 secretKeyRef:
                   name: k8ssandra-superuser
@@ -55,6 +55,4 @@ spec:
             path: /tmp
             type: DirectoryOrCreate
       restartPolicy: Never
-      nodeSelector:
-        k8ssandra-test-pool: stress
   backoffLimit: 1
