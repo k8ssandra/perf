@@ -100,6 +100,8 @@ Note: Installing K8ssandra requires Helm. On MacOS:
 
 ## Testing with dynamic volume provisioning
 
+This is the recommended volume setup.
+
 Relevant reading: [Dynamic Volume
 Provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/).
 
@@ -121,6 +123,7 @@ Relevant readings:
 
 * [GCP docs on Local Persistent
 Volumes](https://cloud.google.com/kubernetes-engine/docs/how-to/persistent-volumes/local-ssd).
+* [GCP docs on local SSDs](https://cloud.google.com/compute/docs/disks/local-ssd#create_local_ssd).
 * [K8s docs on Local Persistent Volumes](https://kubernetes.io/docs/concepts/storage/volumes/#local).
 
 Local volumes can only be used as a statically created PersistentVolume. Dynamic provisioning is not
@@ -129,7 +132,14 @@ supported.
 Also, local SSD storage is not available for all instance types, see [machine type
 restrictions](https://cloud.google.com/compute/docs/disks#local_ssd_machine_type_restrictions).
 
-TODO
+The benchmarks were done using manually-created local persistent-volumes, as described
+[here](https://cloud.google.com/kubernetes-engine/docs/how-to/persistent-volumes/local-ssd#example_local_pvs).
+
+To run the benchmarks using local storage, execute the following commands:
+
+    ./create-pvs.sh
+    ../shared/install-k8ssandra.sh local-storage us-central1-a us-central1-b us-central1-c
+    ../shared/run-benchmarks.sh 
 
 # Monitoring the tests
 
@@ -140,3 +150,4 @@ The test logs are accessible with the following commands:
 
 # Getting the test results
 
+TODO
