@@ -15,11 +15,7 @@ instances.
 
 # Setting up the infrastructure
 
-Setting up the infrastructure is largely vendor-dependent. See the following instructions:
-
-* GKE: [general instructions](./infra/GKE/) on GKE infrastructure setup. [This
-script](./infra/GKE/create-gke-cluster.sh) can be used to create the Kubernetes cluster on GKE.
-
+See
 # Running the benchmarks
 
 Hardware benchmarks should be performed first, without K8ssandra installed. See [general
