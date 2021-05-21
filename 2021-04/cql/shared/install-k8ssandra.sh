@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 if [ $# -ne 4 ]; then
   echo Usage:
   echo "install-k8ssandra.sh <storage-class> <rack1-zone> <rack2-zone> <rack3-zone>"

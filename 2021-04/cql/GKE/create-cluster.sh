@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 gcloud container clusters create "k8ssandra-perf" \
   --cluster-version "1.19.9-gke.1400" \
   --release-channel "regular" \
@@ -9,13 +11,7 @@ gcloud container clusters create "k8ssandra-perf" \
   --node-locations "us-central1-a,us-central1-b,us-central1-c" \
   --num-nodes "1" \
   --disk-type "pd-ssd" \
-  --disk-size "100" \
-  --local-ssd-count "8"
-
-# Notes:
-# `--disk-type` and `--disk-size` govern the boot disk characteristics.
-# `--local-ssd-count` governs the amount of attached SSD local drives – this is required for testing
-#  with local persistent volumes.
+  --disk-size "100"
 
 gcloud container node-pools create "stress" \
   --cluster "k8ssandra-perf" \
