@@ -27,3 +27,11 @@ helm install k8ssandra k8ssandra/k8ssandra -n k8ssandra -f "$HELM_FILE" \
    --set "cassandra.datacenters[0].racks[0].affinityLabels.topology\.kubernetes\.io/zone=$RACK1_ZONE" \
    --set "cassandra.datacenters[0].racks[1].affinityLabels.topology\.kubernetes\.io/zone=$RACK2_ZONE" \
    --set "cassandra.datacenters[0].racks[2].affinityLabels.topology\.kubernetes\.io/zone=$RACK3_ZONE"
+
+echo
+echo K8ssandra Helm charts installed. Waiting for the datacenter to become ready...
+
+kubectl wait --for=condition=Ready cassdc/dc1 --timeout=15m -n k8ssandra
+
+echo
+echo K8ssandra is ready.
