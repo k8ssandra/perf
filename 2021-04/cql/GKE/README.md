@@ -105,16 +105,16 @@ Relevant reading: [Dynamic Volume
 Provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/).
 
 To test using the recommended standard-rwo storage class, execute the [install-k8ssandra](
-../shared/install-k8ssandra.sh) and the [run-benchmarks](../shared/run-benchmarks.sh) scripts with
-the following arguments:
+./shared/install-k8ssandra.sh) and the [run-benchmarks](../shared/run-cql-benchmarks.sh) scripts
+with the following arguments:
 
     ../shared/install-k8ssandra.sh standard-rwo us-central1-a us-central1-b us-central1-c
-    ../shared/run-benchmarks.sh 
+    ../shared/run-cql-benchmarks.sh 
 
 You can also test the premium-rwo storage class:
 
     ../shared/install-k8ssandra.sh premium-rwo us-central1-a us-central1-b us-central1-c
-    ../shared/run-benchmarks.sh 
+    ../shared/run-cql-benchmarks.sh 
 
 # Monitoring the tests
 
