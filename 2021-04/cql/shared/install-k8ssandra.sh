@@ -16,13 +16,11 @@ fi
 SHARED_DIR=$(cd "$(dirname "$0")" && pwd)
 HELM_FILE="$SHARED_DIR"/k8ssandra-perf.yaml
 
-kubectl create namespace k8ssandra
-
 helm repo add k8ssandra https://helm.k8ssandra.io/stable
 
 helm repo update
 
-helm install k8ssandra k8ssandra/k8ssandra -n k8ssandra -f "$HELM_FILE" \
+helm install k8ssandra k8ssandra/k8ssandra -n k8ssandra --create-namespace -f "$HELM_FILE" \
    --set "cassandra.cassandraLibDirVolume.storageClass=$STORAGE_CLASS" \
    --set "cassandra.datacenters[0].racks[0].affinityLabels.topology\.kubernetes\.io/zone=$RACK1_ZONE" \
    --set "cassandra.datacenters[0].racks[1].affinityLabels.topology\.kubernetes\.io/zone=$RACK2_ZONE" \
