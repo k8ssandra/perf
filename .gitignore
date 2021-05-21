@@ -270,6 +270,5 @@ docs/.vscode/settings.json
 # Pyenv
 .python-version
 
-
 # Benchmark results
-./results
+results
