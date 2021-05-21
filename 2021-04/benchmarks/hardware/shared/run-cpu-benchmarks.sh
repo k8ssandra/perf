@@ -21,6 +21,7 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: sysbench-pod
+  namespace: k8ssandra
 spec:
   containers:
     - args:

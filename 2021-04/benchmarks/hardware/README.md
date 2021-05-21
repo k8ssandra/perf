@@ -10,7 +10,7 @@ to be scheduled.
 
 CPU benchmarks use sysbench.
 
-Execute the [run-cpu-benchmarks](./shared/run-cpu-benchmarks.sh) script:
+Execute the [run-cpu-benchmarks](shared/run-cpu-benchmarks.sh) script:
 
     ./shared/run-cpu-benchmarks.sh
 
@@ -21,7 +21,7 @@ Results will be stored under `./results/cpu`.
 Disk benchmarks use FIO with custom tests tailored for Cassandra; they also target a specific
 storage class.
 
-Execute the [run-disk-benchmarks](./shared/run-disk-benchmarks.sh) script and pass the desired
+Execute the [run-disk-benchmarks](shared/run-disk-benchmarks.sh) script and pass the desired
 storage class as an argument, for example:
 
     ./shared/run-disk-benchmarks.sh my-storage-class

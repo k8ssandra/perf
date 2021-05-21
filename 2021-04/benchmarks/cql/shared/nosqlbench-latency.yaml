@@ -8,27 +8,27 @@ spec:
     spec:
       containers:
         - command:
-          - java
-          - -jar
-          - nb.jar
-          - cql-tabular2
-          - username=$(K8SSANDRA_USER)
-          - password=$(K8SSANDRA_PWD)
-          - rampup-cycles=1M
-          - main-cycles=50M
-          - write_ratio=5
-          - read_ratio=5
-          - threads=150
-          - striderate=10
-          - stride=800
-          - hosts=k8ssandra-dc1-service
-          - --progress
-          - console:1s
-          - --report-csv-to
-          - /var/lib/stress/latency
-          - rf=3
-          - partsize=5000
-          - -v
+            - java
+            - -jar
+            - nb.jar
+            - cql-tabular2
+            - username=$(K8SSANDRA_USER)
+            - password=$(K8SSANDRA_PWD)
+            - rampup-cycles=1M
+            - main-cycles=50M
+            - write_ratio=5
+            - read_ratio=5
+            - threads=150
+            - striderate=10
+            - stride=800
+            - hosts=k8ssandra-dc1-service
+            - --progress
+            - console:1s
+            - --report-csv-to
+            - /var/lib/stress/latency
+            - rf=3
+            - partsize=5000
+            - -v
           image: nosqlbench/nosqlbench
           name: nosqlbench-latency
           resources:

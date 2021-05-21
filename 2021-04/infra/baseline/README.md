@@ -1,8 +1,6 @@
-# Overview
+# Baseline Infrastructure Setup
 
 Baseline benchmarks will be conducted on AWS.
-
-## Infrastructure
 
 ### Cassandra nodes
 * Cassandra nodes: 3

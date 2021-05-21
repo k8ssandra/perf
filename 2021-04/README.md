@@ -13,14 +13,22 @@ and I/O performance using `fio`.
 profile, comparing the results of each cloud vendor against a baseline reference using AWS EC2
 instances.
 
-# Hardware benchmarks
+# Setting up the infrastructure
 
-These should be performed first, without K8ssandra installed.
+Setting up the infrastructure is largely vendor-dependent. See the following instructions:
 
-See [general instructions](./hardware) on hardware benchmarks.
+* GKE: [general instructions](./infra/GKE/) on GKE infrastructure setup. [This
+script](./infra/GKE/create-gke-cluster.sh) can be used to create the Kubernetes cluster on GKE.
 
-# CQL Benchmarks
+# Running the benchmarks
 
-These require K8ssandra to be installed.
+Hardware benchmarks should be performed first, without K8ssandra installed. See [general
+instructions](benchmarks/hardware) on hardware benchmarks.
 
-See [general instructions](./cql) on CQL benchmarks.
+CQL benchmarks should be performed after, as they require K8ssandra to be installed. 
+
+There is a shared script [here](./infra/shared/install-k8ssandra.sh) that installs K8ssandra on a
+running Kubernetes cluster. The script expects 4 arguments: the storage class to use, and 3 zone
+names where the 3 Cassandra nodes should be created.
+
+See [general instructions](benchmarks/cql) on CQL benchmarks.

@@ -28,6 +28,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: fio-bench-claim-$STORAGE_CLASS
+  namespace: k8ssandra
 spec:
   accessModes:
     - ReadWriteOnce
@@ -46,6 +47,7 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: fio-bench-pod-$STORAGE_CLASS
+  namespace: k8ssandra
 spec:
   containers:
     - args:
