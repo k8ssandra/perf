@@ -15,8 +15,12 @@ instances.
 
 # Hardware benchmarks
 
+These should be performed first, without K8ssandra installed.
+
 See [general instructions](./hardware) on hardware benchmarks.
 
 # CQL Benchmarks
+
+These require K8ssandra to be installed.
 
 See [general instructions](./cql) on CQL benchmarks.
